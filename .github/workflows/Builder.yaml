@@ -47,6 +47,14 @@ jobs:
         
       shell: bash
 
+    - name: compile iphoneos
+      run: |
+        python3 scripts/platform_builder.py --platform=iphoneos --arch=all --cmake_dir=$HOME/opt/cmake-$CMAKE_VERSION/CMake.app/Contents
+        cp include/dobby.h build/iphoneos
+        tar -zcvf build/dobby-iphoneos-all.tar.gz build/iphoneos
+        cp build/dobby-iphoneos-all.tar.gz artifact/
+      shell: bash
+
     - name: print output
       run: |
         ls -lha .
